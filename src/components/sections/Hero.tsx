@@ -4,7 +4,11 @@ import { profile } from "@/data/resume";
 import { HeroBackground } from "@/components/hero/HeroBackground";
 import { NeuralVisual } from "@/components/hero/NeuralVisual";
 import { MagneticButton } from "@/components/motion/MagneticButton";
-import resumeAsset from "@/assets/resume.docx.asset.json";
+
+const resumeAsset = new URL(
+  "../../assets/MV_Hema_Sree_Resume.docx",
+  import.meta.url
+).href;
 
 const headline = ["Hi,", "I'm", "MV", "Hema", "Sree"];
 
@@ -16,6 +20,7 @@ export function Hero() {
   return (
     <section id="home" className="relative flex min-h-screen items-center overflow-hidden pt-28">
       <HeroBackground />
+
       <div className="relative mx-auto grid w-full max-w-6xl gap-14 px-5 py-16 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
         <div>
           <motion.div
@@ -34,7 +39,11 @@ export function Hero() {
                 key={word + i}
                 initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                transition={{ delay: 1.6 + i * 0.09, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                transition={{
+                  delay: 1.6 + i * 0.09,
+                  duration: 0.7,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
                 className={`mr-3 inline-block ${i > 1 ? "text-gradient" : ""}`}
               >
                 {word}
@@ -74,13 +83,15 @@ export function Hero() {
             >
               Explore My Work <ArrowDown className="size-4" />
             </MagneticButton>
+
             <MagneticButton
-              href={resumeAsset.url}
+              href={resumeAsset}
               download
               className="glass text-foreground hover:text-accent"
             >
               <Download className="size-4" /> Download Resume
             </MagneticButton>
+
             <MagneticButton
               onClick={() => scrollTo("contact")}
               className="text-foreground/80 hover:text-accent"

@@ -1,9 +1,13 @@
 import { motion } from "motion/react";
 import { Download, Github, Linkedin, Mail, MapPin, Phone } from "lucide-react";
 import { profile } from "@/data/resume";
-import resumeAsset from "@/assets/resume.docx.asset.json";
 import { SectionHeading } from "@/components/layout/SectionHeading";
 import { MagneticButton } from "@/components/motion/MagneticButton";
+
+const resumeAsset = new URL(
+  "../../assets/MV_Hema_Sree_Resume.docx",
+  import.meta.url
+).href;
 
 const channels = [
   { icon: Mail, label: "Email", value: profile.email, href: `mailto:${profile.email}` },
@@ -19,6 +23,7 @@ export function Contact() {
         aria-hidden
         className="pointer-events-none absolute left-1/2 top-1/2 size-[40rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/8 blur-[160px]"
       />
+
       <div className="mx-auto max-w-4xl text-center">
         <SectionHeading
           eyebrow="Contact"
@@ -40,8 +45,9 @@ export function Contact() {
           >
             <Mail className="size-4" /> Email me
           </MagneticButton>
+
           <MagneticButton
-            href={resumeAsset.url}
+            href={resumeAsset}
             download
             className="glass text-foreground hover:text-accent"
           >
@@ -52,6 +58,7 @@ export function Contact() {
         <div className="mt-12 grid gap-3.5 sm:grid-cols-2">
           {channels.map((c, i) => {
             const Icon = c.icon;
+
             return (
               <motion.a
                 key={c.label}
@@ -68,11 +75,14 @@ export function Contact() {
                 <div className="grid size-11 shrink-0 place-items-center rounded-2xl border border-accent/20 bg-accent/8 text-accent transition-transform duration-500 group-hover:scale-110">
                   <Icon className="size-4.5" />
                 </div>
+
                 <div className="min-w-0">
                   <div className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
                     {c.label}
                   </div>
-                  <div className="truncate text-[14px] text-foreground/90">{c.value}</div>
+                  <div className="truncate text-[14px] text-foreground/90">
+                    {c.value}
+                  </div>
                 </div>
               </motion.a>
             );
