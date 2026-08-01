@@ -5,11 +5,6 @@ import { HeroBackground } from "@/components/hero/HeroBackground";
 import { NeuralVisual } from "@/components/hero/NeuralVisual";
 import { MagneticButton } from "@/components/motion/MagneticButton";
 
-const resumeAsset = new URL(
-  "../../assets/MV_Hema_Sree_Resume.docx",
-  import.meta.url
-).href;
-
 const headline = ["Hi,", "I'm", "MV", "Hema", "Sree"];
 
 function scrollTo(id: string) {
@@ -18,7 +13,10 @@ function scrollTo(id: string) {
 
 export function Hero() {
   return (
-    <section id="home" className="relative flex min-h-screen items-center overflow-hidden pt-28">
+    <section
+      id="home"
+      className="relative flex min-h-screen items-center overflow-hidden pt-28"
+    >
       <HeroBackground />
 
       <div className="relative mx-auto grid w-full max-w-6xl gap-14 px-5 py-16 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
@@ -37,14 +35,24 @@ export function Hero() {
             {headline.map((word, i) => (
               <motion.span
                 key={word + i}
-                initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
-                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                initial={{
+                  opacity: 0,
+                  y: 30,
+                  filter: "blur(10px)",
+                }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                  filter: "blur(0px)",
+                }}
                 transition={{
                   delay: 1.6 + i * 0.09,
                   duration: 0.7,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className={`mr-3 inline-block ${i > 1 ? "text-gradient" : ""}`}
+                className={`mr-3 inline-block ${
+                  i > 1 ? "text-gradient" : ""
+                }`}
               >
                 {word}
               </motion.span>
@@ -57,8 +65,11 @@ export function Hero() {
             transition={{ delay: 2.15, duration: 0.7 }}
             className="mt-5 font-display text-base font-medium tracking-tight text-accent sm:text-lg"
           >
-            Software Developer <span className="text-muted-foreground/50">|</span> Data Analyst{" "}
-            <span className="text-muted-foreground/50">|</span> AI/ML Enthusiast
+            Software Developer{" "}
+            <span className="text-muted-foreground/50">|</span>{" "}
+            Data Analyst{" "}
+            <span className="text-muted-foreground/50">|</span>{" "}
+            AI/ML Enthusiast
           </motion.p>
 
           <motion.p
@@ -67,8 +78,9 @@ export function Hero() {
             transition={{ delay: 2.3, duration: 0.7 }}
             className="mt-5 max-w-xl text-[15px] leading-relaxed text-muted-foreground"
           >
-            {profile.summary} I build full-stack web applications and research-driven AI/ML
-            solutions — from sentiment analysis to reinforcement-learning recommenders.
+            {profile.summary} I build full-stack web applications and
+            research-driven AI/ML solutions — from sentiment analysis to
+            reinforcement-learning recommenders.
           </motion.p>
 
           <motion.div
@@ -77,35 +89,46 @@ export function Hero() {
             transition={{ delay: 2.45, duration: 0.7 }}
             className="mt-9 flex flex-wrap items-center gap-3"
           >
+            {/* Explore My Work */}
             <MagneticButton
               onClick={() => scrollTo("projects")}
               className="bg-[linear-gradient(120deg,var(--accent),var(--accent2))] text-primary-foreground glow"
             >
-              Explore My Work <ArrowDown className="size-4" />
+              Explore My Work
+              <ArrowDown className="size-4" />
             </MagneticButton>
 
+            {/* Download Resume */}
             <MagneticButton
-              href={resumeAsset}
-              download
+              href="/MV_Hema_Sree_Resume.docx"
+              download="MV_Hema_Sree_Resume.docx"
               className="glass text-foreground hover:text-accent"
             >
-              <Download className="size-4" /> Download Resume
+              <Download className="size-4" />
+              Download Resume
             </MagneticButton>
 
+            {/* Let's Connect */}
             <MagneticButton
               onClick={() => scrollTo("contact")}
               className="text-foreground/80 hover:text-accent"
               strength={0.2}
             >
-              <Mail className="size-4" /> Let&apos;s Connect
+              <Mail className="size-4" />
+              Let&apos;s Connect
             </MagneticButton>
           </motion.div>
         </div>
 
+        {/* Animated Neural Visual */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 1.9, duration: 1, ease: [0.22, 1, 0.36, 1] }}
+          transition={{
+            delay: 1.9,
+            duration: 1,
+            ease: [0.22, 1, 0.36, 1],
+          }}
         >
           <NeuralVisual />
         </motion.div>
